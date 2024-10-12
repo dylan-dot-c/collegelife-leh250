@@ -19,7 +19,7 @@ export default function RootLayout({
     return (
         <html lang='en'>
             <body
-                className={`bg-slate-100 dark:bg-slate-900 text-black dark:text-white ${lora.className}`}>
+                className={`bg-slate-100 dark:bg-black text-black dark:text-white ${lora.className}`}>
                 <Providers>
                     <Navbar />
                     {children}
