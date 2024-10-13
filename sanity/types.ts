@@ -76,6 +76,7 @@ export type Post = {
     _rev: string;
     title?: string;
     slug?: Slug;
+    description: string;
     author?: {
         _ref: string;
         _type: "reference";
@@ -104,6 +105,8 @@ export type Post = {
     }>;
     publishedAt?: string;
     content: any;
+    name: string;
+    author_image: string;
 };
 
 export type Author = {
