@@ -4,12 +4,12 @@ import { Post } from "@/sanity/types";
 
 const getAllPosts = (): Promise<Post[]> => {
     return client.fetch(
-        groq`*[_type=='post']{_createdAt, author, mainImage, slug, title}`
+        groq`*[_type=='post']{_createdAt, author, mainImage, slug, title, _id, "image": mainImage.asset -> url} | order(_createdAt)`
     );
 };
 
 const getPostBySlug = (slug: string): Promise<Post[]> => {
-    return client.fetch(groq`*[_type=='post'&&slug -> current==${slug}]`);
+    return client.fetch(groq`*[_type=='post'&&slug.current=="${slug}"]`);
 };
 
 export { getAllPosts, getPostBySlug };
