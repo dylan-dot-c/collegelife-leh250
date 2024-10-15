@@ -10,7 +10,10 @@ const Header = () => {
                     Lehman College
                 </span>
             </h1>
-            <p>A curated list of blogs written by Dylan Heslop</p>
+            <p className='mt-4'>
+                A curated list of blogs to help first-year students know what to
+                expect and survive at college. Written by Dylan Heslop
+            </p>
         </header>
     );
 };

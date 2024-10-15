@@ -58,20 +58,22 @@ const Project = async ({ params }: { params: { slug: string } }) => {
         list: {
             // Ordered list (<ol>)
             number: ({ children }) => (
-                <ol className='list-decimal list-inside ml-4'>{children}</ol>
+                <ol className='list-decimal list-inside ml-4 my-4'>
+                    {children}
+                </ol>
             ),
             // Unordered list (<ul>)
             bullet: ({ children }) => (
-                <ul className='list-disc list-inside ml-4'>{children}</ul>
+                <ul className='list-disc list-inside ml-4 mb-4'>{children}</ul>
             ),
         },
         listItem: {
             // Customize the list item rendering (for both ordered and unordered lists)
             bullet: ({ children }) => (
-                <li className={`'mb-2' ${inter.className}`}>{children}</li>
+                <li className={`mb-2 text-lg `}>{children}</li>
             ),
             number: ({ children }) => (
-                <li className={`'mb-2' ${inter.className}`}>{children}</li>
+                <li className={`mb-2 text-lg `}>{children}</li>
             ),
         },
     };
