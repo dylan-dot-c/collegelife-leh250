@@ -4,6 +4,7 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Author from "@/components/Author";
+import { inter } from "@/utils/font";
 
 export const revalidate = 1;
 
@@ -34,15 +35,24 @@ const Project = async ({ params }: { params: { slug: string } }) => {
         },
         block: {
             h1: ({ children }) => (
-                <h1 className='text-3xl my-4 font-bold font-mono'>
+                <h1
+                    className={`text-3xl my-4 font-bold font-mono ${inter.className}`}>
                     {children}
                 </h1>
             ),
             h2: ({ children }) => (
-                <h2 className='text-2xl my-4 font-bold'>{children}</h2>
+                <h2 className={`text-2xl my-4 font-bold ${inter.className}`}>
+                    {children}
+                </h2>
             ),
             normal: ({ children }) => (
                 <p className='my-2 text-lg'>{children}</p>
+            ),
+            blockquote: ({ children }) => (
+                <blockquote
+                    className={`border-l-4 border-gray-500 pl-4 ${inter.className} my-4 dark:bg-gray-900 bg-transparent py-10 px-6 pl-10 text-black dark:text-gray-300`}>
+                    {children}
+                </blockquote>
             ),
         },
         list: {
@@ -57,8 +67,12 @@ const Project = async ({ params }: { params: { slug: string } }) => {
         },
         listItem: {
             // Customize the list item rendering (for both ordered and unordered lists)
-            bullet: ({ children }) => <li className='mb-2'>{children}</li>,
-            number: ({ children }) => <li className='mb-2'>{children}</li>,
+            bullet: ({ children }) => (
+                <li className={`'mb-2' ${inter.className}`}>{children}</li>
+            ),
+            number: ({ children }) => (
+                <li className={`'mb-2' ${inter.className}`}>{children}</li>
+            ),
         },
     };
 
@@ -70,10 +84,18 @@ const Project = async ({ params }: { params: { slug: string } }) => {
     }
 
     return (
-        <div className='max-w-3xl mx-auto mt-6 px-4'>
-            <h1 className='capitalize mb-4 font-bold font-serif md:text-center text-3xl'>
+        <div className='max-w-3xl mx-auto mt-6 px-4 my-6'>
+            <h1
+                className={`capitalize mb-4 font-bold md:text-center text-3xl ${inter.className}`}>
                 {project[0].title}
             </h1>
+            <Image
+                src={project[0].image}
+                alt={project[0].mainImage?.alt || "image showcasing smth"}
+                className='w-full rounded-md max-h-[400px] object-cover my-4'
+                width={800}
+                height={400}
+            />
             <p>{project[0]._createdAt.split("T")[0]}</p>
             <Author name={project[0].name} image={project[0].author_image} />
             <PortableText

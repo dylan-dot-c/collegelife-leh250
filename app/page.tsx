@@ -2,6 +2,7 @@ import Author from "@/components/Author";
 import Header from "@/components/Header";
 import { getAllPosts } from "@/sanity/lib/getPosts";
 import Image from "next/image";
+import { inter } from "@/utils/font";
 
 export const revalidate = 10;
 
@@ -14,19 +15,20 @@ export default async function Home() {
 
             <h2 className='text-2xl underline font-bold mb-4'>Blog Posts</h2>
 
-            <div className='divide-slate-200 divide-y space-y-4'>
+            <div className='divide-slate-500 divide-y space-y-4'>
                 {posts.map((post) => {
                     return (
                         <a
                             href={`/posts/${post.slug?.current}`}
                             title={`Read post: ${post.title}`}
-                            className='flex justify-between mt-2 p-4 group'
+                            className='flex justify-between  p-4 group items-center'
                             key={post._id}>
                             <div className='md:max-w-md md:w-auto w-2/3 space-y-3'>
                                 <p className='group-hover:text-emerald-600 block transition text-xl font-bold'>
                                     {post.title}
                                 </p>
-                                <p className='line-clamp-3 md:line-clamp-none'>
+                                <p
+                                    className={`line-clamp-3 md:line-clamp-none ${inter.className}`}>
                                     {post.description}
                                 </p>
                                 <Author

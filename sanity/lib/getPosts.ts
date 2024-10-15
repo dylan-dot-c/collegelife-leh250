@@ -10,7 +10,9 @@ const getAllPosts = (): Promise<Post[]> => {
 
 const getPostBySlug = (slug: string): Promise<Post[]> => {
     return client.fetch(
-        groq`*[_type=='post'&&slug.current=="${slug}"]{content, title, _createdAt, "name": author -> name, "author_image": author->image.asset->url}`
+        groq`*[_type=='post'&&slug.current=="${slug}"]{
+        content,
+        title, _createdAt, "name": author -> name, "author_image": author->image.asset->url, "image": mainImage.asset -> url}`
     );
 };
 
