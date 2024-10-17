@@ -76,6 +76,26 @@ const Project = async ({ params }: { params: { slug: string } }) => {
                 <li className={`mb-2 text-lg `}>{children}</li>
             ),
         },
+        marks: {
+            link: ({ value, children }) => {
+                // Read https://css-tricks.com/use-target_blank/
+                const { blank, href } = value;
+                const className = "underline text-blue-400 ";
+                return blank ? (
+                    <a
+                        href={href}
+                        target='_blank'
+                        className={className}
+                        rel='noopener'>
+                        {children}
+                    </a>
+                ) : (
+                    <a href={href} className={className}>
+                        {children}
+                    </a>
+                );
+            },
+        },
     };
 
     const project = await getPostBySlug(params.slug);
